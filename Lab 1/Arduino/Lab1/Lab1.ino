@@ -53,7 +53,7 @@ void loop() {
   if (Serial.available() > 0) {
     duty = serialRead();
   }
-  //Serial.println(duty); //Debug print
+  Serial.println(duty); //Debug print
   setPWM(duty); //set motor PWM
 
 }
