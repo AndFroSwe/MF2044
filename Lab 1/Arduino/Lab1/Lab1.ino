@@ -4,6 +4,7 @@
 // define globals
 float duty = 50.0;
 volatile long enc_count = 0;
+long enc_count_old = 0;
 
 void setup() {
   // set output pin
@@ -28,7 +29,9 @@ void loop() {
   }
   //Serial.println(duty); //Debug print
   setPWM(duty); //set motor PWM
+  if (enc_count != enc_count_old) {
   Serial.println(enc_count);
+  }
 
 }
 
