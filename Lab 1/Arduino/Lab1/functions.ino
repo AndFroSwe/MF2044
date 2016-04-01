@@ -62,7 +62,7 @@ void encoder_isr() {
   static uint8_t enc_val = 0;
 
   enc_val = enc_val << 2;    // make room for new readings
-  enc_val = enc_val | ((PINE & 0b110000) >> 3);  // mask in pin 4 and 5 in register pine
+  enc_val = enc_val | ((PINE & 0b110000) >> 4);  // mask in pin 4 and 5 in register pine
 
   enc_count = enc_count + lookup_table[enc_val & 0b1111];  // update encoder history
 }

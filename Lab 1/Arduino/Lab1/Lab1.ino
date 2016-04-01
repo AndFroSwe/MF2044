@@ -32,6 +32,7 @@ void loop() {
   if (enc_count != enc_count_old) {
   Serial.println(enc_count);
   }
+  enc_count_old = enc_count;
 
 }
 
