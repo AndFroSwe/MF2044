@@ -15,8 +15,8 @@ void initPwm() {// ####Setup pwm####
   // counter variables
   OCR4A = TOP4;
   setPWM(duty); //set dutycycle
-
 }
+
 // Set duty cycle on pwm
 void setPWM(float duty) {
   int duty_ticks;
@@ -33,21 +33,21 @@ void setPWM(float duty) {
   OCR4B = duty_ticks;  //set dutycycle
 }
 
+//Initiate 1 kHz timer
 void initTimer() {
   // reset registers
   TCCR5A = 0x00;
   TCCR5B = 0x00;
-
   // Set mode
   TCCR5B |= (1 << WGM52); // CTC mode
-  TCCR5A |= (1 << COM5A0); // Toggle port on compare match
-
   // set clock source and prescaler
   TCCR5B |= (1 << CS50) | (1 << CS51); // internal clock source, prescaler 64
-
+  // timer mask register set
+  TIMSK5 |= (1 << OCIE5A);
   // counter variables
   OCR5A = TOP5;
 }
+
 //Reads data from serial 0 and returns it.
 float serialRead(void) {
   float inData = 0;
@@ -66,3 +66,9 @@ void encoder_isr() {
 
   enc_count = enc_count + lookup_table[enc_val & 0b1111];  // update encoder history
 }
+
+// timer interrupt for calculating speed on motor. 
+ISR(TIMER5_COMPA_vect) {  // interrupt on 1 kHz clock
+  
+}
+
