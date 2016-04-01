@@ -1,13 +1,13 @@
 #define TOP4 160  // Timer 4: 50 kHz
 #define TOP5 248  // Timer 5: 1 kHz
-#define PPR 1000  // pulses per revolution of encoder (500 per channel)
+#define PPR 2000  // pulses per revolution of encoder (500 per channel)
 #define ENC_SAMPLE_RATE 1000  // rate of sampling interrupt for counting encoder
 
 // define globals
 float duty = 50.0;
 volatile long enc_count = 0;
 long enc_count_old = 0;
-int rpm = 0;
+float rpm = 0;
 
 void setup() {
   // set output pin
@@ -32,10 +32,7 @@ void loop() {
   }
   //Serial.println(duty); //Debug print
   setPWM(duty); //set motor PWM
-//  if (enc_count != enc_count_old) {
-//    Serial.println(enc_count);
-//  }
-//  enc_count_old = enc_count;
-
+  Serial.print("velocity: ");
+  Serial.println(rpm);
 }
 
