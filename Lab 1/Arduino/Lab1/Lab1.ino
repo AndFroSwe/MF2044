@@ -1,5 +1,5 @@
 #define TOP4 160  // Timer 4: 50 kHz
-#define TOP5 248  // Timer 5: 1 kHz
+#define TOP5 2480  // Timer 5: 0.1 kHz
 #define PPR 2000  // pulses per revolution of encoder (500 per channel)
 #define ENC_SAMPLE_RATE 1000  // rate of sampling interrupt for counting encoder
 
