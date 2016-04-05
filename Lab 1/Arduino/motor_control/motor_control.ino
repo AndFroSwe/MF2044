@@ -38,7 +38,7 @@ void loop() {
     setPWM(duty);
   }
   Serial.write((const char*)&rpm, 4);
-  delay(100);
+  delay(1000);
 }
 
 
