@@ -70,7 +70,7 @@ void encoder_isr() {
 // timer interrupt for calculating speed on motor.
 ISR(TIMER5_COMPA_vect) {  // interrupt on 1 kHz clock
   // THIS NEED S ADJUSTING
-  rpm = (float(60) * float(ENC_SAMPLE_RATE) * float(enc_count)) / float(PPR); // calculate rotational speed
+  rpm = float(enc_count)*30; // calculate rotational speed
   enc_count = 0;  // reset encoder counter to counter overflow
 }
 
