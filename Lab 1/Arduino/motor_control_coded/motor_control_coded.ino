@@ -4,6 +4,8 @@
 #define ENC_SAMPLE_RATE 1000  // rate of sampling interrupt for counting encoder, samples per second
 #define MAX_RPM 1200
 #define MIN_RPM -1200
+#define KP 0.0001
+#define KI 0.05
 
 // define globals
 volatile long enc_count = 0;
@@ -11,15 +13,24 @@ long enc_count_old = 0;
 float rpm = 0;
 float duty = 50.0;
 float sample_time_ms = 100;
+float sample_time_ms_control = 100;
+
+static union {
+  float ref;
+  uint32_t il;
+};
 
 void setup() {
+  pinMode(5, OUTPUT);
+
   // set output pin
   pinMode(7, OUTPUT); //OCR4B
 
   initPwm(); // initiate pwm ot 50 kHz
-  initTimer(); // start 1 kHz timer
+  initEncTimer(); // start 1 kHz Enconder timer
+  initControlTimer(); // Start 1kHz Control timer
 
-  // ###### Define pin interrupts for encoder ########
+    // ###### Define pin interrupts for encoder ########
   attachInterrupt(0, encoder_isr, CHANGE);
   attachInterrupt(1, encoder_isr, CHANGE);
 
@@ -28,19 +39,14 @@ void setup() {
 }
 
 void loop() {
-  union {
-    float f1;
-    uint32_t i1;
-  };
+
   // read duty cycle from serial monitor
   while (Serial.available() > 0) {
-    Serial.readBytesUntil('\r', (char *)&i1, 4);
-
-    duty = f1;  // set new duty cycle
-    setPWM(duty);
+    Serial.readBytesUntil('\r', (char *)&il, 4);
   }
   Serial.write((const char*)&rpm, 4);
   delay(50);
 }
+
 
 
