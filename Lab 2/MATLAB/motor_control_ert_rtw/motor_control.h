@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'motor_control'.
  *
- * Model version                  : 1.8
+ * Model version                  : 1.10
  * Simulink Coder version         : 8.9 (R2015b) 13-Aug-2015
- * C/C++ source code generated on : Wed Apr 13 09:51:50 2016
+ * C/C++ source code generated on : Wed Apr 13 10:12:06 2016
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Atmel->AVR
@@ -78,20 +78,76 @@
 
 /* Block signals (auto storage) */
 typedef struct {
+  real32_T Sum2;                       /* '<Root>/Sum2' */
   real32_T Encoder;                    /* '<Root>/Encoder' */
+  real32_T Saturate;                   /* '<S1>/Saturate' */
+  real32_T Sum;                        /* '<Root>/Sum' */
 } B_motor_control_T;
 
 /* Block states (auto storage) for system '<Root>' */
 typedef struct {
-  real_T PWM_DSTATE;                   /* '<Root>/PWM' */
   real_T Encoder_DSTATE;               /* '<Root>/Encoder' */
+  real_T PWM_DSTATE;                   /* '<Root>/PWM' */
+  struct {
+    void *LoggedData[2];
+  } Scope_PWORK;                       /* '<Root>/Scope' */
+
   struct {
     void *LoggedData;
-  } Scope_PWORK;                       /* '<Root>/Scope' */
+  } Scope1_PWORK;                      /* '<Root>/Scope1' */
+
+  real32_T Integrator_DSTATE;          /* '<S1>/Integrator' */
+  real32_T Filter_DSTATE;              /* '<S1>/Filter' */
+  int32_T clockTickCounter;            /* '<Root>/Pulse Generator' */
 } DW_motor_control_T;
 
 /* Parameters (auto storage) */
 struct P_motor_control_T_ {
+  real32_T DiscretePIDController_D;    /* Mask Parameter: DiscretePIDController_D
+                                        * Referenced by: '<S1>/Derivative Gain'
+                                        */
+  real32_T DiscretePIDController_I;    /* Mask Parameter: DiscretePIDController_I
+                                        * Referenced by: '<S1>/Integral Gain'
+                                        */
+  real32_T DiscretePIDController_LowerSatu;/* Mask Parameter: DiscretePIDController_LowerSatu
+                                            * Referenced by: '<S1>/Saturate'
+                                            */
+  real32_T DiscretePIDController_N;    /* Mask Parameter: DiscretePIDController_N
+                                        * Referenced by: '<S1>/Filter Coefficient'
+                                        */
+  real32_T DiscretePIDController_P;    /* Mask Parameter: DiscretePIDController_P
+                                        * Referenced by: '<S1>/Proportional Gain'
+                                        */
+  real32_T DiscretePIDController_UpperSatu;/* Mask Parameter: DiscretePIDController_UpperSatu
+                                            * Referenced by: '<S1>/Saturate'
+                                            */
+  real_T PulseGenerator_Amp;           /* Expression: 1200
+                                        * Referenced by: '<Root>/Pulse Generator'
+                                        */
+  real_T PulseGenerator_Period;        /* Computed Parameter: PulseGenerator_Period
+                                        * Referenced by: '<Root>/Pulse Generator'
+                                        */
+  real_T PulseGenerator_Duty;          /* Computed Parameter: PulseGenerator_Duty
+                                        * Referenced by: '<Root>/Pulse Generator'
+                                        */
+  real_T PulseGenerator_PhaseDelay;    /* Expression: 0
+                                        * Referenced by: '<Root>/Pulse Generator'
+                                        */
+  real32_T ref_Value;                  /* Computed Parameter: ref_Value
+                                        * Referenced by: '<Root>/ref'
+                                        */
+  real32_T Integrator_gainval;         /* Computed Parameter: Integrator_gainval
+                                        * Referenced by: '<S1>/Integrator'
+                                        */
+  real32_T Integrator_IC;              /* Computed Parameter: Integrator_IC
+                                        * Referenced by: '<S1>/Integrator'
+                                        */
+  real32_T Filter_gainval;             /* Computed Parameter: Filter_gainval
+                                        * Referenced by: '<S1>/Filter'
+                                        */
+  real32_T Filter_IC;                  /* Computed Parameter: Filter_IC
+                                        * Referenced by: '<S1>/Filter'
+                                        */
   real32_T Constant_Value;             /* Computed Parameter: Constant_Value
                                         * Referenced by: '<Root>/Constant'
                                         */
@@ -167,6 +223,7 @@ extern RT_MODEL_motor_control_T *const motor_control_M;
  * Here is the system hierarchy for this model
  *
  * '<Root>' : 'motor_control'
+ * '<S1>'   : 'motor_control/Discrete PID Controller'
  */
 #endif                                 /* RTW_HEADER_motor_control_h_ */
 

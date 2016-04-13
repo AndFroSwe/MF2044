@@ -25,7 +25,7 @@
   *  -------------------------------------------------------------------------
   * | See matlabroot/simulink/src/sfuntmpl_doc.c for a more detailed template |
   *  ------------------------------------------------------------------------- 
-* Created: Wed Apr 13 09:51:26 2016
+* Created: Wed Apr 13 10:04:37 2016
 */
 #define S_FUNCTION_LEVEL 2
 #define S_FUNCTION_NAME Encoder_read

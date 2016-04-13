@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'motor_control'.
  *
- * Model version                  : 1.8
+ * Model version                  : 1.10
  * Simulink Coder version         : 8.9 (R2015b) 13-Aug-2015
- * C/C++ source code generated on : Wed Apr 13 09:51:50 2016
+ * C/C++ source code generated on : Wed Apr 13 10:12:06 2016
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Atmel->AVR
@@ -31,13 +31,13 @@
 # define rtmGetTPtr(rtm)               (&(rtm)->Timing.taskTime0)
 #endif
 
-extern void PWM_init_Outputs_wrapper(const real32_T *duty,
-  const real_T *xD);
-extern void PWM_init_Update_wrapper(const real32_T *duty,
-  real_T *xD);
 extern void Encoder_read_Outputs_wrapper(real32_T *rpm_out,
   const real_T *xD);
 extern void Encoder_read_Update_wrapper(const real32_T *rpm_out,
+  real_T *xD);
+extern void PWM_init_Outputs_wrapper(const real32_T *duty,
+  const real_T *xD);
+extern void PWM_init_Update_wrapper(const real32_T *duty,
   real_T *xD);
 
 #endif                                 /* RTW_HEADER_motor_control_private_h_ */
