@@ -7,9 +7,9 @@
  *
  * Code generation for model "motor_control".
  *
- * Model version              : 1.10
+ * Model version              : 1.11
  * Simulink Coder version : 8.9 (R2015b) 13-Aug-2015
- * C source code generated on : Wed Apr 13 10:52:48 2016
+ * C source code generated on : Wed Apr 13 11:07:35 2016
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Atmel->AVR
