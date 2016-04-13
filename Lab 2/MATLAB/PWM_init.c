@@ -25,7 +25,7 @@
   *  -------------------------------------------------------------------------
   * | See matlabroot/simulink/src/sfuntmpl_doc.c for a more detailed template |
   *  ------------------------------------------------------------------------- 
-* Created: Wed Apr 13 09:30:26 2016
+* Created: Wed Apr 13 10:51:10 2016
 */
 #define S_FUNCTION_LEVEL 2
 #define S_FUNCTION_NAME PWM_init

@@ -9,7 +9,7 @@
  *
  * Model version                  : 1.10
  * Simulink Coder version         : 8.9 (R2015b) 13-Aug-2015
- * C/C++ source code generated on : Wed Apr 13 10:12:06 2016
+ * C/C++ source code generated on : Wed Apr 13 10:52:48 2016
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Atmel->AVR
@@ -37,7 +37,6 @@ void motor_control_step(void)
   real_T rtb_PulseGenerator;
   real32_T rtb_Sum1;
   real32_T rtb_FilterCoefficient;
-  real32_T u0;
 
   /* DiscretePulseGenerator: '<Root>/Pulse Generator' */
   rtb_PulseGenerator = (motor_control_DW.clockTickCounter <
@@ -56,8 +55,8 @@ void motor_control_step(void)
   /* Sum: '<Root>/Sum2' incorporates:
    *  Constant: '<Root>/ref'
    */
-  motor_control_B.Sum2 = (real32_T)(rtb_PulseGenerator -
-    motor_control_P.ref_Value);
+  motor_control_B.Sum2 = (real32_T)(motor_control_P.ref_Value -
+    rtb_PulseGenerator);
 
   /* S-Function (Encoder_read): '<Root>/Encoder' */
   Encoder_read_Outputs_wrapper( &motor_control_B.Encoder,
@@ -78,28 +77,16 @@ void motor_control_step(void)
    *  DiscreteIntegrator: '<S1>/Integrator'
    *  Gain: '<S1>/Proportional Gain'
    */
-  u0 = (motor_control_P.DiscretePIDController_P * rtb_Sum1 +
-        motor_control_DW.Integrator_DSTATE) + rtb_FilterCoefficient;
-
-  /* Saturate: '<S1>/Saturate' */
-  if (u0 > motor_control_P.DiscretePIDController_UpperSatu) {
-    motor_control_B.Saturate = motor_control_P.DiscretePIDController_UpperSatu;
-  } else if (u0 < motor_control_P.DiscretePIDController_LowerSatu) {
-    motor_control_B.Saturate = motor_control_P.DiscretePIDController_LowerSatu;
-  } else {
-    motor_control_B.Saturate = u0;
-  }
-
-  /* End of Saturate: '<S1>/Saturate' */
+  motor_control_B.Sum = (motor_control_P.DiscretePIDController_P * rtb_Sum1 +
+    motor_control_DW.Integrator_DSTATE) + rtb_FilterCoefficient;
 
   /* Sum: '<Root>/Sum' incorporates:
    *  Constant: '<Root>/Constant'
    */
-  motor_control_B.Sum = motor_control_B.Saturate +
-    motor_control_P.Constant_Value;
+  motor_control_B.Sum_e = motor_control_B.Sum + motor_control_P.Constant_Value;
 
   /* S-Function (PWM_init): '<Root>/PWM' */
-  PWM_init_Outputs_wrapper(&motor_control_B.Sum, &motor_control_DW.PWM_DSTATE);
+  PWM_init_Outputs_wrapper(&motor_control_B.Sum_e, &motor_control_DW.PWM_DSTATE);
 
   /* S-Function "Encoder_read_wrapper" Block: <Root>/Encoder */
   Encoder_read_Update_wrapper( &motor_control_B.Encoder,
@@ -116,7 +103,7 @@ void motor_control_step(void)
     rtb_FilterCoefficient;
 
   /* S-Function "PWM_init_wrapper" Block: <Root>/PWM */
-  PWM_init_Update_wrapper(&motor_control_B.Sum, &motor_control_DW.PWM_DSTATE);
+  PWM_init_Update_wrapper(&motor_control_B.Sum_e, &motor_control_DW.PWM_DSTATE);
 
   /* External mode */
   rtExtModeUploadCheckTrigger(1);
@@ -160,10 +147,10 @@ void motor_control_initialize(void)
   motor_control_M->Timing.stepSize0 = 0.05;
 
   /* External mode info */
-  motor_control_M->Sizes.checksums[0] = (2167905755U);
-  motor_control_M->Sizes.checksums[1] = (2903789358U);
-  motor_control_M->Sizes.checksums[2] = (1149258114U);
-  motor_control_M->Sizes.checksums[3] = (3055879096U);
+  motor_control_M->Sizes.checksums[0] = (2107225776U);
+  motor_control_M->Sizes.checksums[1] = (1965539276U);
+  motor_control_M->Sizes.checksums[2] = (1036431389U);
+  motor_control_M->Sizes.checksums[3] = (618126809U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;

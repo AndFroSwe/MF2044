@@ -9,7 +9,7 @@
  *
  * Model version                  : 1.10
  * Simulink Coder version         : 8.9 (R2015b) 13-Aug-2015
- * C/C++ source code generated on : Wed Apr 13 10:12:06 2016
+ * C/C++ source code generated on : Wed Apr 13 10:52:48 2016
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Atmel->AVR
@@ -25,20 +25,14 @@ P_motor_control_T motor_control_P = {
   0.0F,                                /* Mask Parameter: DiscretePIDController_D
                                         * Referenced by: '<S1>/Derivative Gain'
                                         */
-  0.05F,                               /* Mask Parameter: DiscretePIDController_I
+  1.0F,                                /* Mask Parameter: DiscretePIDController_I
                                         * Referenced by: '<S1>/Integral Gain'
-                                        */
-  -50.0F,                              /* Mask Parameter: DiscretePIDController_LowerSatu
-                                        * Referenced by: '<S1>/Saturate'
                                         */
   100.0F,                              /* Mask Parameter: DiscretePIDController_N
                                         * Referenced by: '<S1>/Filter Coefficient'
                                         */
-  0.0001F,                             /* Mask Parameter: DiscretePIDController_P
+  1.0F,                                /* Mask Parameter: DiscretePIDController_P
                                         * Referenced by: '<S1>/Proportional Gain'
-                                        */
-  50.0F,                               /* Mask Parameter: DiscretePIDController_UpperSatu
-                                        * Referenced by: '<S1>/Saturate'
                                         */
   1200.0,                              /* Expression: 1200
                                         * Referenced by: '<Root>/Pulse Generator'

@@ -28,8 +28,8 @@
     ;%
     ;% Auto data (motor_control_P)
     ;%
-      section.nData     = 6;
-      section.data(6)  = dumData; %prealloc
+      section.nData     = 4;
+      section.data(4)  = dumData; %prealloc
       
 	  ;% motor_control_P.DiscretePIDController_D
 	  section.data(1).logicalSrcIdx = 0;
@@ -39,21 +39,13 @@
 	  section.data(2).logicalSrcIdx = 1;
 	  section.data(2).dtTransOffset = 1;
 	
-	  ;% motor_control_P.DiscretePIDController_LowerSatu
+	  ;% motor_control_P.DiscretePIDController_N
 	  section.data(3).logicalSrcIdx = 2;
 	  section.data(3).dtTransOffset = 2;
 	
-	  ;% motor_control_P.DiscretePIDController_N
+	  ;% motor_control_P.DiscretePIDController_P
 	  section.data(4).logicalSrcIdx = 3;
 	  section.data(4).dtTransOffset = 3;
-	
-	  ;% motor_control_P.DiscretePIDController_P
-	  section.data(5).logicalSrcIdx = 4;
-	  section.data(5).dtTransOffset = 4;
-	
-	  ;% motor_control_P.DiscretePIDController_UpperSatu
-	  section.data(6).logicalSrcIdx = 5;
-	  section.data(6).dtTransOffset = 5;
 	
       nTotData = nTotData + section.nData;
       paramMap.sections(1) = section;
@@ -63,19 +55,19 @@
       section.data(4)  = dumData; %prealloc
       
 	  ;% motor_control_P.PulseGenerator_Amp
-	  section.data(1).logicalSrcIdx = 6;
+	  section.data(1).logicalSrcIdx = 4;
 	  section.data(1).dtTransOffset = 0;
 	
 	  ;% motor_control_P.PulseGenerator_Period
-	  section.data(2).logicalSrcIdx = 7;
+	  section.data(2).logicalSrcIdx = 5;
 	  section.data(2).dtTransOffset = 1;
 	
 	  ;% motor_control_P.PulseGenerator_Duty
-	  section.data(3).logicalSrcIdx = 8;
+	  section.data(3).logicalSrcIdx = 6;
 	  section.data(3).dtTransOffset = 2;
 	
 	  ;% motor_control_P.PulseGenerator_PhaseDelay
-	  section.data(4).logicalSrcIdx = 9;
+	  section.data(4).logicalSrcIdx = 7;
 	  section.data(4).dtTransOffset = 3;
 	
       nTotData = nTotData + section.nData;
@@ -86,27 +78,27 @@
       section.data(6)  = dumData; %prealloc
       
 	  ;% motor_control_P.ref_Value
-	  section.data(1).logicalSrcIdx = 10;
+	  section.data(1).logicalSrcIdx = 8;
 	  section.data(1).dtTransOffset = 0;
 	
 	  ;% motor_control_P.Integrator_gainval
-	  section.data(2).logicalSrcIdx = 11;
+	  section.data(2).logicalSrcIdx = 9;
 	  section.data(2).dtTransOffset = 1;
 	
 	  ;% motor_control_P.Integrator_IC
-	  section.data(3).logicalSrcIdx = 12;
+	  section.data(3).logicalSrcIdx = 10;
 	  section.data(3).dtTransOffset = 2;
 	
 	  ;% motor_control_P.Filter_gainval
-	  section.data(4).logicalSrcIdx = 13;
+	  section.data(4).logicalSrcIdx = 11;
 	  section.data(4).dtTransOffset = 3;
 	
 	  ;% motor_control_P.Filter_IC
-	  section.data(5).logicalSrcIdx = 14;
+	  section.data(5).logicalSrcIdx = 12;
 	  section.data(5).dtTransOffset = 4;
 	
 	  ;% motor_control_P.Constant_Value
-	  section.data(6).logicalSrcIdx = 15;
+	  section.data(6).logicalSrcIdx = 13;
 	  section.data(6).dtTransOffset = 5;
 	
       nTotData = nTotData + section.nData;
@@ -165,11 +157,11 @@
 	  section.data(2).logicalSrcIdx = 1;
 	  section.data(2).dtTransOffset = 1;
 	
-	  ;% motor_control_B.Saturate
+	  ;% motor_control_B.Sum
 	  section.data(3).logicalSrcIdx = 2;
 	  section.data(3).dtTransOffset = 2;
 	
-	  ;% motor_control_B.Sum
+	  ;% motor_control_B.Sum_e
 	  section.data(4).logicalSrcIdx = 3;
 	  section.data(4).dtTransOffset = 3;
 	
@@ -300,8 +292,8 @@
   ;%
 
 
-  targMap.checksum0 = 2167905755;
-  targMap.checksum1 = 2903789358;
-  targMap.checksum2 = 1149258114;
-  targMap.checksum3 = 3055879096;
+  targMap.checksum0 = 2107225776;
+  targMap.checksum1 = 1965539276;
+  targMap.checksum2 = 1036431389;
+  targMap.checksum3 = 618126809;
 
