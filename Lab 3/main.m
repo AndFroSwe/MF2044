@@ -3,5 +3,4 @@ format compact;
 
 Ts = 0.5;
 
-
 runSimAndScale('lab3');
