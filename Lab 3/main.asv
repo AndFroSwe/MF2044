@@ -1,7 +1,7 @@
 close all; clear all; clc;
 format compact;
 
-%Continous ideal motor
+%Continous 
 Ts = 0.5;
 P = 2;
 

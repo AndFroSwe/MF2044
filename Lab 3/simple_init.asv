@@ -1,0 +1,11 @@
+function [ ] = simple_init( Ts )
+%UNTITLED3 Summary of this function goes here
+%   Detailed explanation goes here
+
+ttInitKernel('PrioFP');
+
+data.K = 2;
+data.wcet = Ts;
+
+end
+
