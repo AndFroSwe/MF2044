@@ -1,16 +1,9 @@
-function simple_init( Ts )
-%SIMPLE_INIT Summary of this function goes here
-%   Detailed explanation goes here
-
-ttInitKernel('prioFP');
-
-data.K = 2;
-data.wcet = Ts;
-
-starttime = 0.0;
-period = Ts;
-
-ttCreatePeriodicTask('ctrl_task', starttime, period, 'ctrl_code', data);
-ttSetPriority(2, 'ctrl_task');
+function simple_init(Ts)
+ttInitKernel('prioFP')
+data.K = 2; % controller proportional gain
+data.exectime = 0.1; % control task execution time
+starttime = 0.0; % control task start time
+period = 0.5; % control task period
+ttCreatePeriodicTask('ctrl_task', starttime, period, 'ctrl_code', data)
 
 
