@@ -1,5 +1,5 @@
 function simple_init(Ts)
-ttInitKernel('prioFP')
+ttInitKernel('prioFP') %Fixed priority
 data.K = 2; % controller proportional gain
 data.wcet = Ts; % control task execution time
 starttime = 0.0; % control task start time
