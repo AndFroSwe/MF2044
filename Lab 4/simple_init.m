@@ -3,37 +3,34 @@ prio = {'prioDM', 'prioFP', 'prioEDF'};
 choise = 1;
 disp(prio{choise});
 
-ttInitKernel(prio{choise});
+ttInitKernel(prio{choise}); %Initiate scheduling mode
 
-% Task attributes
-starttime = 0.0; % control task start time
-period = 0.005; % control task period
-deadline = period;
+% Task parameters
+starttimes = [0 0 0];
+periods = [0.006 0.005 0.004];
+tasknames = {'pid_task1', 'pid_task2', 'pid_task3'};
+codefcn = 'pid_code';
 
-% Create task data (local memory)
-data.K = 1;
-data.Ti = 0.12;
-data.Td = 0.049;
-data.beta = 0.5;
-data.N = 10;
-data.h = period;
+% Create the three tasks
+for i = 1:3
+    data.K = 1;
+    data.Ti = 0.12;
+    data.Td = 0.049;
+    data.beta = 0.5;
+    data.N = 10;
+    data.h = periods(i);
+    data.u = 0;
+    data.Iold = 0;
+    data.Dold = 0;
+    data.yold = 0;
+    data.rChan = 1;
+    data.yChan = i+1;
+    data.uChan = i;
+    data.late = 0;
 
-%Help parameters PID
-data.u = 0;
-data.Iold = 0;
-data.Dold = 0;
-data.yold = 0;
-
-%Data channels
-data.rChan = 1;
-data.yChan = 2;
-data.uChan = 1;
-
-data.t = 0;
-
-
-ttCreatePeriodicTask('pid_task', starttime, period, 'pid_code', data);
-ttSetPriority(2, 'pid_task');
+    ttCreatePeriodicTask(tasknames{i}, starttimes(i), periods(i), codefcn, data);
+    ttCreateLog(tasknames{i},1,['response' num2str(i)],1000)
+end
 
 % %Deadline overrun handler
 % ttCreateHandler('handler_task', 1, 'handler_code');
