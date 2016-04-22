@@ -1,19 +1,42 @@
 function simple_init(Ts)
-ttInitKernel('prioFP') %Fixed priority
-data.K = 2; % controller proportional gain
-data.wcet = Ts; % control task execution time
+prio = {'prioDM', 'prioFP', 'prioEDF'};
+choise = 1;
+disp(prio{choise});
+
+ttInitKernel(prio{choise});
+
+% Task attributes
 starttime = 0.0; % control task start time
-period = Ts; % control task period
+period = 0.005; % control task period
+deadline = period;
 
-ttCreatePeriodicTask('ctrl_task', starttime, period, 'ctrl_code', data);
-ttSetPriority(2, 'ctrl_task');
+% Create task data (local memory)
+data.K = 1;
+data.Ti = 0.12;
+data.Td = 0.049;
+data.beta = 0.5;
+data.N = 10;
+data.h = period;
 
-%Disturb task added, task 5
-ttCreatePeriodicTask('disturb_task', 0, Ts, 'disturb_code');
-ttSetPriority(1, 'disturb_task');
+%Help parameters PID
+data.u = 0;
+data.Iold = 0;
+data.Dold = 0;
+data.yold = 0;
 
-%Deadline overrun handler
-ttCreateHandler('handler_task', 1, 'handler_code');
-ttAttachDLHandler('ctrl_task', 'handler_task');
+%Data channels
+data.rChan = 1;
+data.yChan = 2;
+data.uChan = 1;
+
+data.t = 0;
+
+
+ttCreatePeriodicTask('pid_task', starttime, period, 'pid_code', data);
+ttSetPriority(2, 'pid_task');
+
+% %Deadline overrun handler
+% ttCreateHandler('handler_task', 1, 'handler_code');
+% ttAttachDLHandler('pid_task', 'handler_task');
 
 
