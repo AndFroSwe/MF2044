@@ -1,4 +1,4 @@
-function simple_init(Ts)
+function node_init(Ts)
 prio = {'prioDM', 'prioFP', 'prioEDF'};
 choise = 1;
 disp(prio{choise});
@@ -35,5 +35,4 @@ end
 % %Deadline overrun handler
 % ttCreateHandler('handler_task', 1, 'handler_code');
 % ttAttachDLHandler('pid_task', 'handler_task');
-
 
