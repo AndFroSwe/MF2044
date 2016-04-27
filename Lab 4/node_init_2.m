@@ -1,4 +1,7 @@
-function node_init(choice)
+function node_init(inp)
+choice = inp
+order = [2 3 4];
+disp(order)
 prio = {'prioDM', 'prioFP', 'prioEDF'};
 disp(prio{choice});
 
@@ -29,6 +32,10 @@ for i = 1:3
     data.late = 0;
 
     ttCreatePeriodicTask(tasknames{i}, starttimes(i), periods(i), codefcn, data);
+    if strcmp(prio{choice}, 'prioFP')
+        disp('hajj hajj')
+        ttSetPriority(order(i), tasknames{i});
+    end
     ttCreateLog(tasknames{i},1,['response' num2str(i)],1000)
 end
 

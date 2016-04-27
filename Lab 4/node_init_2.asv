@@ -1,18 +1,19 @@
-function node_init(Ts)
+function node_init(inp)
+choice = inp(1);
 prio = {'prioDM', 'prioFP', 'prioEDF'};
-choise = 1;
-disp(prio{choise});
+disp(prio{choice});
 
-ttInitKernel(prio{choise}); %Initiate scheduling mode
+ttInitKernel(prio{choice}); %Initiate scheduling mode
 
 % Task parameters
 starttimes = [0 0 0];
 periods = [0.006 0.005 0.004];
 tasknames = {'pid_task1', 'pid_task2', 'pid_task3'};
-codefcn = 'pid_code';
+codefcn = 'pid_code_2';
 
 % Create the three tasks
 for i = 1:3
+    data.wcet = 0.0013;
     data.K = 1;
     data.Ti = 0.12;
     data.Td = 0.049;
