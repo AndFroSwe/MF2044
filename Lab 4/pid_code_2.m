@@ -8,7 +8,7 @@ switch segment
         y = ttAnalogIn(data.yChan);
         data = pidcalc(data, r, y);
         
-        exectime = 0.0013;
+        exectime = data.wcet;
         
     case 2
         ttAnalogOut(data.uChan, data.u);
