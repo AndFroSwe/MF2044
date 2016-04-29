@@ -1,4 +1,4 @@
-function [ exectime, data ] = pid_code1( segment, data )
+function [ exectime, data ] = pid_code2( segment, data )
 
 global glbData;
 
@@ -7,18 +7,19 @@ switch segment
         ttTake('sem1');
         exectime = 0;
     case 2
-        glbData.x = 1;
+        glbData.x = 2;
         exectime = data.wcet1;
         
     case 3
-        glbData.y = 1;
+        glbData.y = 2;
         exectime = data.wcet2;
     case 4 
+        ttGive('sim1');
+        
+    case 4
         summation = glbData.x + glbData.y;
-        ttAnalogOut(1, summation);
-        exectime = 0;
-    case 5       
-        ttGive('sem1');
+        ttAnalogOut(2, summation);
+        
         exectime = -1;   
 end
 

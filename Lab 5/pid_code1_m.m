@@ -4,7 +4,7 @@ global glbData;
 
 switch segment
     case 1
-        ttTake('sem1');
+        ttEnterMonitor('mon1');
         exectime = 0;
     case 2
         glbData.x = 1;
@@ -18,7 +18,7 @@ switch segment
         ttAnalogOut(1, summation);
         exectime = 0;
     case 5       
-        ttGive('sem1');
+        ttExitMonitor('mon1');
         exectime = -1;   
 end
 
