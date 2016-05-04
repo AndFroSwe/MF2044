@@ -16,10 +16,10 @@ tasknames = {'ctrl_task'};
 codefcn = {'ctrl_code'};
 
 
-
-
 % Create the tasks
 for i = 1:length(tasknames)
+    data.r = 0;
+    data.y = 0;
     data.wcet = 0.0015; % execution time
     data.K = 1;
     data.Ti = 0.12;
