@@ -1,4 +1,4 @@
-function node_init_pid(inp)
+function node_init_pid_4(inp)
 clc
 global message;
 
@@ -11,7 +11,7 @@ starttimes = [0 0];
 periods = [0.005 0.005];
 order = [2 1];
 tasknames = {'sensor_task', 'control_task'};
-codefcn = {'sensor_code', 'control_code'};
+codefcn = {'sensor_code_4', 'control_code_4'};
 
 % intialize message queue
 ttCreateMailbox('mail', 1);
