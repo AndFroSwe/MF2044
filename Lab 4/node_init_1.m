@@ -30,9 +30,5 @@ data.late = 0;
 
 ttCreatePeriodicTask(taskname, starttime, period, codefcn, data);
 ttSetPriority(1, taskname);
-%ttCreateLog(tasknames,1,['response' num2str(i)],1000)
 
-% %Deadline overrun handler
-% ttCreateHandler('handler_task', 1, 'handler_code');
-% ttAttachDLHandler('pid_task', 'handler_task');
 

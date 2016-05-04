@@ -8,7 +8,7 @@ ttInitKernel(prio); %Initiate scheduling mode
 
 % Task parameters
 starttimes = [0 0];
-periods = [0.005 0.005];
+periods = [0.005 0.005];kj
 order = [2 1];
 tasknames = {'sensor_task', 'control_task'};
 codefcn = {'sensor_code', 'control_code'};
