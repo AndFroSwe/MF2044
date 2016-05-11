@@ -10,7 +10,7 @@ disp(prio{choice});
 ttInitKernel(prio{choice}); %Initiate scheduling mode
 
 % Task parameters
-starttimes = [0.000];
+starttimes = [0];
 periods = [0.005];
 tasknames = {'ref_task'};
 codefcn = {'ref_code'};

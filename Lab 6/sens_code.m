@@ -8,7 +8,7 @@ switch segment
         exectime = data.wcet;
     case 2
         ttSendMsg(3, [data.msgId, data.y], 40);
-        fprintf('sens_node sent y: %f \n', data.y)
+%         fprintf('sens_node sent y: %f \n', data.y)
         
         exectime = -1;
 end

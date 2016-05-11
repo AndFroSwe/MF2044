@@ -1,6 +1,9 @@
 function [ exectime, data ] = ctrl_code( segment, data )
 switch segment
     case 1
+        %initiate parameter values
+        data.r = '';
+        data.y = '';
         data.msgId = 3;
 %         msg = ['r', 'y'];
         msg = ttGetMsg;
@@ -9,15 +12,10 @@ switch segment
         else
             % loop until queue is empty
             while ~(isempty(msg))            
-                disp(msg(1))
-                if (msg(1) == 1) % read r
-%                     disp('r')
+                if (msg(1) == 1) && (isempty(data.r)) % read r
                     data.r = msg(2);
-                    %fprintf('Ctrl_code recieved r: %f \n', data.r)
-                elseif (msg(1) == 2) % read y
-%                     disp('y')
+                elseif (msg(1) == 2) && (isempty(data.y)) % read y
                     data.y = msg(2);
-%                     fprintf('Ctrl_code recieved y: %f \n', data.y)
                 end       
                 msg = ttGetMsg; % get new message
             end
@@ -28,8 +26,7 @@ switch segment
 
     case 2
         ttAnalogOut(data.uChan, data.u);
-        ttSendMsg(2, [data.msgId, data.u], 40);
-        fprintf('Ctrl_code sent u: %f \n', data.u)
+        ttSendMsg(2, [data.msgId, data.u], 40, 1);
         exectime = -1;
 end
 
