@@ -2,7 +2,7 @@ function node_init_act(inp)
 
 clc
 choice = inp;
-order = [1 1];
+order = [1 2];
 disp(order);
 prio = {'prioDM', 'prioFP', 'prioEDF'};
 disp(prio{choice});

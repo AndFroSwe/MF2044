@@ -6,11 +6,12 @@ switch segment
         if isempty(msg)
             exectime = -1;
         else
-            data.u = msg(2);
-            fprintf('act_node recieved u: %f \n', data.u)
-       
+            while ~(isempty(msg))
+                data.u = msg(2);
+%                 fprintf('act_node recieved u: %f \n', data.u)
+                msg = ttGetMsg;
+            end
             exectime = data.wcet;
-            
         end
         
     case 2

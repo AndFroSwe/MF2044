@@ -7,19 +7,21 @@ switch segment
         if isempty(msg) %Exit if empty
             exectime = -1;
         else
-            while ~(isempty(msg)) %Empty queue            
+            % loop until queue is empty
+            while ~(isempty(msg))            
                 disp(msg(1))
                 if (msg(1) == 1) % read r
-                    disp('r')
+%                     disp('r')
                     data.r = msg(2);
                     %fprintf('Ctrl_code recieved r: %f \n', data.r)
                 elseif (msg(1) == 2) % read y
-                    disp('y')
+%                     disp('y')
                     data.y = msg(2);
-                    fprintf('Ctrl_code recieved y: %f \n', data.y)
+%                     fprintf('Ctrl_code recieved y: %f \n', data.y)
                 end       
-                msg = ttGetMsg;
+                msg = ttGetMsg; % get new message
             end
+            % calculate pid output
             data = pidcalc(data, data.r, data.y);
             exectime = data.wcet;
         end
